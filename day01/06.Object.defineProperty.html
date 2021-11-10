@@ -1,0 +1,52 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-10 15:37:30
+ * @LastEditTime: 2021-11-10 16:04:29
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \vue-note\day01\06.Object.defineProperty.html
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>06.Object.defineProperty</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+  </head>
+  <body>
+    <script>
+      // 定义一个对象，不想被外界操作，更改
+      const obj = {
+        name: "zhangsan",
+        age: 20,
+      };
+
+      Object.defineProperties(obj, {
+        score: {
+          value: 99,
+          enumerable: true,
+          writable: true,
+          configurable: true,
+        },
+      });
+
+      Object.defineProperty(obj, "num", {
+        get() {
+          // 当访问到该属性的时候就会执行Get中的代码
+          return this.num2;
+        },
+        set(value) {
+          // 当修改属性值的时候，就会触发Set中的代码
+          // 在这是可以做一些业务逻辑的处理，比如判断数据是否合法
+          if (typeof value == "number") {
+            this.num2 = value;
+          } else {
+            this.num2 = 0;
+          }
+        },
+      });
+    </script>
+  </body>
+</html>
