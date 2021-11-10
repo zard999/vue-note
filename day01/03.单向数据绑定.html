@@ -1,0 +1,33 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-10 14:13:36
+ * @LastEditTime: 2021-11-10 14:17:00
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \vue-note\day01\03.单向数据绑定.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- model -> viewk -->
+      <h2>{{msg}}</h2>
+    </div>
+    <script>
+      // 省略vm实例
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+        },
+      });
+    </script>
+  </body>
+</html>
