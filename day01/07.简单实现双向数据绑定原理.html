@@ -1,0 +1,44 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-10 16:21:42
+ * @LastEditTime: 2021-11-10 18:12:53
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \vue-note\day01\07.简单实现双向数据绑定原理.html
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>07.简单实现双向数据绑定原理</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+  </head>
+  <body>
+    <input id="txt" type="text" v-model="msg" />
+    <span id="sp"></span>
+    <script>
+      const obj = {
+        msg: "",
+      };
+      let result;
+      Object.defineProperty(obj, "msg", {
+        get() {
+          return result;
+        },
+        set(value) {
+          result = value;
+          txt.value = result;
+          sp.textContent = result;
+        },
+      });
+
+      let txt = document.getElementById("txt");
+      let sp = document.getElementById("sp");
+      txt.addEventListener("input", function (e) {
+        obj.msg = this.value;
+      });
+    </script>
+  </body>
+</html>
