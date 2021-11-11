@@ -1,0 +1,38 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-11 11:10:48
+ * @LastEditTime: 2021-11-11 11:30:08
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \vue-note\day01\12.v-once.html
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>12.v-once和v-html和v-text和v-pre和v-cloak</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{msg}}</h2>
+      <!-- v-once第一次渲染，之后改变msg后v-once的值不变 -->
+      <h2 v-once>{{msg}}</h2>
+      <!-- 将html的内容渲染成a对应的标签 -->
+      <h2 v-html="url"></h2>
+      <!-- 不够灵活，标签里的内容会覆盖v-text的内容 -->
+      <h2 v-text="{msg}">llll</h2>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+          url: '<a href="http://www.baidu.com">百度一下</a>',
+        },
+      });
+    </script>
+  </body>
+</html>
