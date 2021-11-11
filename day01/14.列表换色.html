@@ -1,0 +1,40 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-11 12:02:43
+ * @LastEditTime: 2021-11-11 12:05:14
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \vue-note\day01\14.列表换色.html
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>14.列表换色</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+    <style>
+      .active {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <li v-for="item in list">{{item}}</li>
+      </ul>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+          list: ["海贼王", "火影忍者", "妖精的尾巴", "国王的排名"],
+          isClass: true,
+        },
+      });
+    </script>
+  </body>
+</html>
