@@ -1,0 +1,53 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-12 16:50:27
+ * @LastEditTime: 2021-11-12 17:57:27
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \vue-note\day02\单击某按钮变红.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title></title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+    <style>
+      .red {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>vue的例子</h1>
+      <p>{{msg}}</p>
+      <button
+        @click="handleColor(index)"
+        :class="{red: index === indexClass}"
+        v-for="(item,index) in list"
+      >
+        {{item}}
+      </button>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+      Vue.config.productionTip = false; // 关闭生产提示
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+          list: ["苹果", "香蕉", "菠萝", "桔子"],
+          indexClass: 0,
+        },
+        methods: {
+          handleColor(index) {
+            this.indexClass = index;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
