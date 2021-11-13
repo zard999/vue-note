@@ -1,0 +1,54 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-13 08:50:22
+ * @LastEditTime: 2021-11-13 15:35:30
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \vue-note\day03\01.html
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01-计算属性的完整写法</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="firstName" /> +
+      <input type="text" v-model="lastName" /> =
+      <input type="text" v-model="nameCompute" />
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+          firstName: "",
+          lastName: "",
+        },
+        computed: {
+          //   nameCompute() {
+          //     return this.firstName + this.lastName;
+          //   },
+          nameCompute: {
+            get() {
+              return this.firstName + this.lastName;
+            },
+            set(value) {
+              let arr = value.split(" ");
+              this.firstName = arr[0];
+              this.lastName = arr[1];
+            },
+          },
+        },
+      });
+      /**
+       * 1. 计算属性的简写形式只能在v-model中显示出来
+       * 2. 如果想更新数据，是会报错的，简写形式不合适
+       */
+    </script>
+  </body>
+</html>
