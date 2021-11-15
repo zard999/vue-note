@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>09.全局组件的命名</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <my-header-demo></my-header-demo>
+    </div>
+    <script>
+      Vue.component("my-header-demo", {
+        template: `
+                <div>
+                    <p>这是新组件</p>
+                    <p>{{num}}</p>
+                    </div> 
+             `,
+        data() {
+          return {
+            num: 1,
+          };
+        },
+      });
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+        },
+      });
+    </script>
+  </body>
+</html>
