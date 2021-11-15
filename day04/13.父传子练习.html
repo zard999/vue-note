@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>13.父传子练习</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <father> </father>
+    </div>
+    <script>
+      // 父
+      Vue.component("father", {
+        template: `
+               <div>
+                   <h2>父组件</h2>
+                   <son :car='car' :price='price' :auntName='auntName'></son>
+                   我给你找了个阿姨，她是：<input type="text" v-model='auntName' /> 
+                   </div>
+            `,
+        data() {
+          return {
+            car: "bz",
+            price: 50000,
+            auntName: "",
+          };
+        },
+      });
+
+      // 儿子
+      Vue.component("son", {
+        template: `
+               <div>
+                   <h2>子组件</h2>
+                   <p>{{car}},{{price}}</p>
+                   <p>阿姨的名字是：{{auntName}}</p>
+                   </div>
+            `,
+        props: ["car", "price", "auntName"],
+        methods: {},
+      });
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+        },
+      });
+    </script>
+  </body>
+</html>
