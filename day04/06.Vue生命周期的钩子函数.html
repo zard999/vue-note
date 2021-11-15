@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>06.Vue生命周期的钩子函数</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{msg}}</p>
+      <button @click="del">销毁实例</button>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+          timer: null,
+        },
+
+        methods: {
+          del() {
+            this.$destroy();
+            // 销毁实例是指销毁实例对象上的功能，实例对象还在，只是相关功能失效
+          },
+        },
+
+        beforeCreate() {
+          console.log(this);
+          console.log(`beforeCreate执行了 ${this.msg}`);
+          this.num = 100; // 这里可以给vm添加数据
+          // debugger;
+        },
+        created() {
+          console.log(`created执行了 ${this.msg}`);
+        },
+        beforeMount() {
+          console.log(`beforeMount执行了 ${this.msg}`);
+          document.querySelector("p").innerHTML = "hhh";
+          // debugger;
+        },
+        mounted() {
+          // 发送网络请求
+          console.log(`mounted执行了 ${this.msg}`);
+          this.timer = setInterval(() => {
+            console.log(1);
+          }, 500);
+        },
+        beforeUpdate() {
+          console.log(`beforeUpdate执行了 ${this.msg}`);
+          debugger;
+        },
+        updated() {
+          console.log(`updated执行了 ${this.msg}`);
+        },
+        beforeDestroy() {
+          // 销毁阶段
+          console.log(`beforeUpdate执行了 ${this.msg}`);
+          //   关闭定时器
+          clearInterval(this.timer);
+        },
+        destroyed() {
+          // 关闭页面
+          window.close();
+        },
+      });
+    </script>
+  </body>
+</html>
