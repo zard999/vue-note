@@ -9,7 +9,7 @@
   </head>
   <body>
     <div id="app">
-      <p>{{msg}}</p>
+      <p>{{list}}</p>
       <button @click="del">删除</button>
       <p>{{user}}</p>
       <button @click="delObj">删除</button>
@@ -23,13 +23,17 @@
             name: "jack",
             age: 20,
           },
+          list: [1, 2, 3, 4, 5, 6],
         },
         methods: {
-          del() {
-            Vue.delete(this.msg);
-          },
+          // 删除对象的元素
           delObj() {
             Vue.delete(this.user, "name");
+          },
+
+          // 删除数组的元素
+          del() {
+            Vue.delete(this.list, 0);
           },
         },
       });
