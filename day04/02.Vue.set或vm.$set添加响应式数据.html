@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>02.Vue.set添加响应式数据</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{user}}</p>
+      <button @click="add">添加</button>
+      <p>{{list}}</p>
+      <button @click="addList">修改</button>
+    </div>
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          user: {
+            name: "jack",
+            age: 20,
+          },
+          list: [1, 2, 3, 4, 5, 6, 7],
+          msg: "hello",
+        },
+        methods: {
+          // 向对象添加数据
+          add() {
+            // Vue.set(vm.user, "address", "武汉市");
+            this.$set(this.user, "address", "武汉市");
+          },
+
+          // 向数组修改数据
+          addList() {
+            // Vue.set(vm.list, 0, 10);
+            this.$set(this.list, 0, 10);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
