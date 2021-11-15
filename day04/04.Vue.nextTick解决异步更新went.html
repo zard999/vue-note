@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>04.Vue.nextTick解决异步更新went</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{msg}}</p>
+      <button @click="update">获取</button>
+    </div>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+        },
+        methods: {
+          update() {
+            this.msg = "更新数据";
+            // 更新数据时可以实时获取数据
+            // Vue.nextTick(function () {
+            //   let result = document.querySelector("p").innerHTML;
+            //   console.log(result);
+            // });
+            this.$nextTick(function () {
+              let result = document.querySelector("p");
+              console.log(result.innerHTML);
+            });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
