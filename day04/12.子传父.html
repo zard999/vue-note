@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>11.子传父</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <father> </father>
+    </div>
+    <script>
+      // 父
+      Vue.component("father", {
+        template: `
+               <div>
+                   <h2>父组件</h2>
+                   <son :car='car' :price='price' :getData='getData'></son>
+                   <p>我的儿子有女朋友了，她是：{{girlFriend}}</p>
+                   </div>
+            `,
+        data() {
+          return {
+            car: "bz",
+            price: 50000,
+            girlFriend: "",
+          };
+        },
+
+        methods: {
+          getData(value) {
+            console.log(value);
+            this.girlFriend = value;
+          },
+        },
+      });
+
+      // 儿子
+      Vue.component("son", {
+        template: `
+               <div>
+                   <h2>子组件</h2>
+                   <p>{{car}},{{price}}</p>
+                   <button @click='handleValue'>告诉爸爸</button>
+                   </div>
+            `,
+        props: ["car", "price", "getData"],
+        data() {
+          return {
+            girlFriend: {
+              name: "rose",
+              age: 21,
+            },
+          };
+        },
+        methods: {
+          handleValue() {
+            this.getData(this.girlFriend.name);
+          },
+        },
+      });
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+        },
+      });
+    </script>
+  </body>
+</html>
