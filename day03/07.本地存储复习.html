@@ -1,0 +1,38 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-13 16:58:13
+ * @LastEditTime: 2021-11-13 18:05:28
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: \vue-note\day03\todomvc-app\05.本地存储复习.html
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>05.本地存储复习</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box" class="box"></div>
+    <button id="btn">添加颜色</button>
+    <script>
+      let color = localStorage.getItem("color");
+      let oBox = document.getElementById("box");
+      let oBtn = document.getElementById("btn");
+      oBox.style.backgroundColor = color;
+      btn.onclick = function () {
+        oBox.style.backgroundColor = "red";
+        localStorage.setItem("color", "red");
+      };
+    </script>
+  </body>
+</html>
