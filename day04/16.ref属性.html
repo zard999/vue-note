@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>16.ref属性</title>
+  </head>
+  <body>
+    <div id="app">
+      <button ref="btn" @click="test">点击</button>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+        },
+        methods: {
+          test() {
+            console.log(this.$refs);
+            console.log(this.$refs.btn);
+            console.log(this.$refs.btn.innerText);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
