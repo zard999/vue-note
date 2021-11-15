@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>14.局部组件</title>
+  </head>
+  <body>
+    <div id="app">
+      <mybutton></mybutton>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+    <script>
+      // 1. 定义组件
+      const vc = Vue.extend({
+        data() {
+          return {
+            count: 0,
+          };
+        },
+        template: `
+          <div>
+            <h2>我爱你</h2>
+            <button @click='count++'>爱了{{count}}次</button>
+            </div>
+        `,
+      });
+      // 2. 注册组件
+      // 全局组件
+      Vue.component("mybutton", vc);
+
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+        },
+        // 局部组件
+        // components: {
+        //   mybutton: vc,
+        // },
+      });
+    </script>
+  </body>
+</html>
