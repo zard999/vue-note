@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>04.子传父$emit</title>
+  </head>
+  <body>
+    <div id="app">
+      <father></father>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+    <script>
+      Vue.component("father", {
+        template: `
+             <div>
+                <h2>father组件</h2>
+                <son @getData='getData'></son>
+                <p>我的儿媳妇是：{{name}}</p>
+                </div>
+             `,
+        data() {
+          return {
+            name: "",
+          };
+        },
+        methods: {
+          getData(value) {
+            this.name = value;
+          },
+        },
+      });
+
+      Vue.component("son", {
+        //   我的女朋友是： <input type="text" v-model='girlFriend' @keyup.enter='$emit("getData", girlFriend)' />
+        template: `
+             <div>
+                <h2>son组件</h2>
+                我的女朋友是： <input type="text" v-model='girlFriend' @keyup.enter='add' />
+                </div>
+             `,
+        data() {
+          return {
+            girlFriend: "",
+          };
+        },
+        methods: {
+          add() {
+            this.$emit("getData", this.girlFriend);
+          },
+        },
+      });
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+        },
+      });
+    </script>
+  </body>
+</html>
