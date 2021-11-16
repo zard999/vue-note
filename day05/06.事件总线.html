@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>06.事件总线</title>
+  </head>
+  <body>
+    <div id="app">
+      <jack></jack>
+      <rose></rose>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+    <script>
+      const bus = new Vue();
+      Vue.component("jack", {
+        template: `
+             <div>
+                <h2>这是一个jack组件</h2>
+                <button @click='tell'>我告诉你个秘密</button>
+                </div>
+             `,
+        data() {
+          return {
+            msg: "我买彩票中大奖了",
+          };
+        },
+
+        methods: {
+          tell() {
+            bus.$emit("send", this.msg);
+          },
+        },
+      });
+
+      Vue.component("rose", {
+        template: `
+            <div>
+                <h2>这是一个rose组件</h2>
+                <p>这个秘密是：{{secret}}</p>
+                </div>
+          `,
+        data() {
+          return {
+            secret: "",
+          };
+        },
+        mounted() {
+          // this应该指向当前组件，所以要用箭头函数
+          bus.$on("send", (value) => {
+            this.secret = value;
+          });
+        },
+      });
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+        },
+      });
+    </script>
+  </body>
+</html>
