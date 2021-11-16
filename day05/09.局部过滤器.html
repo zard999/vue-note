@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>08.过滤时间传参数</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{date1 | time('YYYY')}}</p>
+      <p>{{date2 | time("YYYY-MM-DD HH:mm:ss")}}</p>
+      <p>{{date3 | time("YYYY-MM")}}</p>
+      <p>{{date1 | time}}</p>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+          date1: 1623423523471,
+          date2: new Date(),
+          date3: "2021-11-16",
+        },
+
+        filters: {
+          time(value, str = "YYYY-MM-DD") {
+            return moment(value).format(str);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
