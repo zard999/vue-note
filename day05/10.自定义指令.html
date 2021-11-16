@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>10.自定义指令</title>
+  </head>
+  <body>
+    <div id="app">
+      <input v-focus type="text" name="" id="" />
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+    <script>
+      Vue.directive("focus", {
+        inserted(el, binding) {
+          console.log(el, binding);
+          el.focus();
+        },
+      });
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+        },
+        // directives: {
+        //   focus: {
+        //     inserted(el) {
+        //       el.focus();
+        //     },
+        //   },
+        // },
+        // mounted() {
+        //   // 待页面都渲染完成之后
+        //   document.querySelector("input").focus();
+        // },
+      });
+    </script>
+  </body>
+</html>
