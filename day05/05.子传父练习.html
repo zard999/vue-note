@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>05.子传父练习</title>
+    <style>
+      .box {
+        width: 606px;
+        height: 300px;
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" class="box" :style="{backgroundColor: color}">
+      <h1>vue的例子</h1>
+      <p>{{msg}}</p>
+      <demo @get-color="getColor"></demo>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+    <script>
+      Vue.config.productionTip = false; // 关闭生产提示
+      Vue.component("demo", {
+        template: `
+        <div>
+          <button @click="add('red')">红色</button>  
+          <button @click="add('yellow')">黄色</button>  
+          <button @click="add('blue')">蓝色</button>  
+          <button @click="add('pink')">粉色</button>  
+        </div>
+        `,
+        methods: {
+          add(color) {
+            this.$emit("get-color", color);
+          },
+        },
+      });
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+          color: "",
+        },
+        methods: {
+          getColor(color) {
+            this.color = color;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
