@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01.复习</title>
+  </head>
+  <body>
+    <script>
+      /* 
+            1. 父传子：在父组件的模板中的子组件上添加一个活动属性然后赋值
+            2. 子传父：核心也是父传子 只不过现在抄底的不是活动属性中的数据 而是一个定义好的函数，函数定义的时候是不会执行的，只有调用的时候才会执行，调用的时候就会传实参，函数调用了之后，会在函数定义的位置执行里面的代码
+                思路：
+                    1. 子组件准备数据
+                    2. 父组件创建函数，带参数，不执行
+                    3. 在父组件的模板中的子组件上添加一个自定义事件,事件值是定义好的事件处理函数
+                    4. 在子组件中对应的逻辑位置，触发自定义事件 this.$emit('自定义事件名', value)
+                    5. 此种方式不需要props
+            3. 兄弟组件：两者没有什么直接的关联， 比如没有嵌套
+                思路：
+                    1. 准备一个事件总线 (event bus)  const bus = new Vue()
+                    2. 在所有组件上都可以访问到这个事件总线
+                    3. 谁传递数据谁准备数据 A ===> B
+                    4. B组件应该准备一个定义好的函数 注册一个自定义事件 bus.$on ,mounted 这个函数带参数
+                    5. A组件应该触发自定义事件, bus.$emit(事件名, value)
+                
+            4. 过滤器：可以对已有的数据进行额外的处理，比如文本格式处理、将普通字符串换成大写（vue3已经废弃）
+
+            5. 指令的5个钩子函数 常用的是前3个： bind inserted update
+                指令的简写：当bind和update中的业务逻辑一样的时候，此时就可以进行简写
+            
+                Vue.directive(指令名称,(el,binding)=>{
+                    el 指令所在的标签元素
+                    binding是一个对象 binding.value: 指令的值
+                    v-red = 'red'
+                })
+
+                v-on:click.stop.prevent = ''
+
+                v-on:click.self.prevent = ''
+                局部指令，就是在组件内部使用的指令
+                    directives:{
+                        fucus(el){
+                            el.focus();
+                        }
+                    }
+         */
+    </script>
+  </body>
+</html>
