@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03.定义组件的另一种方式</title>
+  </head>
+  <body>
+    <div id="app">
+      <hello></hello>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+    <script>
+      // 第一种方式:  创建子类
+      const Hello = Vue.extend({
+        template: `
+               <div>1</div>
+            `,
+      });
+
+      // 第二种方式: 直接挂载
+      new Hello().$mount("#app");
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+        },
+
+        // 注册其它组件
+        // components: { Hello },
+      });
+    </script>
+  </body>
+</html>
