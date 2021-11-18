@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>05.slot插槽的基本使用</title>
+  </head>
+  <body>
+    <div id="app">
+      <child>
+        <template v-slot:one>这是插入到one插槽的内容</template>
+        <!-- <template v-slot:"two">这是插入到two插槽的内容</template>
+        <template v-slot:"three">这是插入到three插槽的内容</template> -->
+      </child>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+    <script>
+      Vue.component("child", {
+        template: `
+                <div>
+                    <slot name='one'></slot>
+                </div> 
+             `,
+        data() {
+          return {
+            child: "子组件",
+          };
+        },
+      });
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "张永辉",
+        },
+      });
+    </script>
+  </body>
+</html>
