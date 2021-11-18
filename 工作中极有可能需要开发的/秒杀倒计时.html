@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>08.秒杀倒计时</title>
+  </head>
+  <body>
+    <div id="app">
+      <Spike :start-time="startTime" :end-time="endTime"></Spike>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/moment.js/2.29.1/moment.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+    <script>
+      Vue.component("Spike", {
+        template: `
+                <div>
+                    <button :disabled='disabled' @click='handleClick'>{{isShopping}}</button>
+                    <p>{{tip}}</p>
+                </div>
+             `,
+        props: ["startTime", "endTime"],
+
+        data() {
+          return {
+            start: false,
+            end: false,
+            done: false,
+            tip: "",
+            timeGap: 0,
+          };
+        },
+
+        computed: {
+          isShopping() {
+            return this.done ? "已参加活动" : "立即购买";
+          },
+          disabled() {
+            return !(this.start && !this.end && !this.done);
+          },
+        },
+
+        async created() {
+          // 从服务端获取的秒杀时间
+          const serverTime = await this.getServerTime();
+          // 现在的时间离秒杀时间还缺多少秒
+          this.timeGap = Date.now() - serverTime;
+
+          this.updateState();
+          this.timerInterval = setInterval(() => {
+            this.updateState();
+          }, 1000);
+        },
+
+        beforeDestroy() {
+          clearInterval(this.timerInterval);
+        },
+
+        updated() {
+          if (this.end || this.done) {
+            clearInterval(this.timerInterval);
+          }
+        },
+
+        methods: {
+          getServerTime() {
+            return new Promise((resolve, reject) => {
+              setTimeout(() => {
+                resolve(new Date(Date.now() - 60 * 1000).getTime());
+              }, 0);
+            });
+          },
+
+          updateState() {
+            const now = moment(new Date(Date.now() - this.timeGap));
+            // 离开始秒杀的毫秒数
+            const diffStart = this.startTime.diff(now);
+            // 离结束秒杀的毫秒数
+            const diffEnd = this.endTime.diff(now);
+            if (diffStart <= 0) {
+              this.start = true;
+              this.tip = "秒杀已开始";
+            } else {
+              this.tip = `距离秒杀开始还剩 ${Math.floor(
+                diffStart / 1000 / 60 / 60
+              )}时${Math.ceil(diffStart / 1000 / 60)}分${Math.ceil(
+                (diffStart / 1000) % 60
+              )}秒`;
+            }
+
+            if (diffEnd <= 0) {
+              this.end = true;
+              this.tip = "秒杀已结束";
+            }
+          },
+
+          handleClick() {
+            alert("提交成功");
+            this.done = true;
+          },
+        },
+      });
+
+      new Vue({
+        el: "#app",
+        data: {
+          startTime: moment("2021-11-17 21:29:00"),
+          endTime: moment("2021-11-17 21:31:00"),
+        },
+      });
+    </script>
+  </body>
+</html>
