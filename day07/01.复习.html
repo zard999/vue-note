@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01.复习</title>
+  </head>
+  <body>
+    <script>
+      /**
+            1. 单向数据流：
+                父组件中的数据传递给子组件，只要父组件中的数据一更新，子组件中的数据会自动更新，而子组件不能暴力修改父组件中的数据
+
+            2. props是只读的，不要修改父组件中的数据
+
+            3. 定义组件的另一种方式
+                Vue.component(组件名称, {}) 全局组件  定义并且注册
+                组件使用分三个步骤： 定义   注册    使用
+                const Hello = Vue.extend({})    Hello是构造函数 类型是VueComponent
+                new Hello().$mount('#app')
+                大型项目开发的时候，我们是将这个构造函数注册为某个子组件，就相当于是生成实例组件
+
+            4. 自定义插件
+                把一些我们自己常用的或是别人常用的，而Vue官方没有提供的一些功能封装在一个单独的文件当中，这样做的好处是为了复用 提高效率
+                Vue其实就是一个依赖于Vue封装的一个js文件，在这个文件当中，每一个对象中有一个install方法，第一个参数一定是Vue对象
+                const atguigu = {}
+                atguigu.install = function(Vue){}
+                使用插件的会后，一定要注意先注册
+                Vue.use(atguigu)
+                注册了之后 那些插件功能才会生效
+                
+            5. 单文件组件
+                就是一个Vue组件就是一个.vue后缀的文件名
+                这个文件有三部分组成
+                结构    html标签    写在<template></template>
+                样式    css
+                行为    js代码  写在script
+                    
+             6. vue-cli   基于webpack的脚手架
+
+            7. 使用脚手架构建项目一定要先安装 
+                npm i -g @vue-cli   不要用国内淘宝镜像安装脚手架
+                创建项目： vue create 项目名
+          */
+    </script>
+  </body>
+</html>
