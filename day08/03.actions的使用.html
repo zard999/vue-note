@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>02.vuex的基本使用</title>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="add">点击加1：{{count}}</button>
+      <button @click="updateData">更新count</button>
+      <p>更新后的值：{{count}}</p>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+    <script src="./js/vuex.js"></script>
+    <script>
+      const UPDATE_DATA = "update-data";
+      // 注册vuex
+      Vue.use(Vuex);
+      // 创建Store
+      const store = new Vuex.Store({
+        // 禁止在mutations之外的地方修改state
+        strict: true,
+        // state 数据源 相当于是我们之前组件的data
+        // 所有组件都可以直接访问store中的数据  是所有组件所共用的
+        state: {
+          count: 0,
+        },
+
+        mutations: {
+          // 这里面的函数都有至少一个参数 参数是state
+          // 加1
+          increment(state) {
+            state.count++;
+          },
+
+          [UPDATE_DATA](state) {
+            state.count++;
+          },
+        },
+
+        actions: {
+          updateData({ commit }) {
+            commit(UPDATE_DATA);
+          },
+        },
+      });
+      /**
+       * 以后只要是使用到了Vuex了，进行数据集中式管理
+       */
+      new Vue({
+        el: "#app",
+        // 将store与vm关联
+        store,
+
+        methods: {
+          // 添加1的方法
+          add() {
+            // 操作mutations中的函数执行  应该用一个方法 commit()
+            this.$store.commit("increment");
+          },
+
+          // 更新数据
+          updateData() {
+            setTimeout(() => {
+              this.$store.dispatch("updateData");
+            }, 2000);
+          },
+        },
+
+        computed: {
+          // 计算count的值
+          count() {
+            return this.$store.state.count;
+          },
+        },
+      });
+      /**
+       * 1. 下载Vuex npm i vuex
+       * 2. 引入到页面当中
+       * 3. 注册Vuex
+       * 4. 创建实例对象Store
+       * 5. 将store与vm关联
+       */
+    </script>
+  </body>
+</html>
