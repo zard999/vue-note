@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01.复习</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * 1. 单文件组件的构成    .vue后缀的文件
+       *    单文件组件里面的开发，要复合ES6的模块化 export default    import
+       *        import 不但可以导入vue  插件  单文件组件  还可以引入css文件
+       * 2. 单文件组件不能直接使用  得使用脚手架进行构建
+       *    vue-cli  Vue当中的脚手架  是基于Webpack
+       * 3. npm i -g @vue-cli  全局安装脚手架
+       * 4. 关闭语法检查
+       * 5. scoped  让css有自己的css作用域（避免css冲突）
+       *    手写样式的时候尽量不用重类名
+       * 6. ref='xxx'  用来代替id  相当于是id
+       *    用于DOM标签中  获取的是ref所在的元素本身
+       *    用于组件，可以获取组件中的data和methods  获取的是ref所在的组件实例对象
+       *    获取方式： this.$refs.xxx
+       * 7. props:
+       *    1. 简单使用 props:[string]
+       *    2. 可以验证数据类型 props:[msg: String, num: Number]
+       *    3. 增强配置
+       *        props:{msg:{type: String,require:true,default: 'hello',validator:value=>{return value>0}}}
+       * 8. 组件间传值
+       *    1. props
+       *    2. $emit
+       *    3. refs+$emit
+       *        this.$refs.xxx.$on(自定义事件，事件处理程序)
+       *        触发和原来一样  this.$emit()
+       * 9. 全局事件总线    解决了兄弟组件间或非父子组件间的通信
+       *    用于组件间的通讯    但是不要滥用
+       *    因为全局事件总线是一个对象
+       *    Vue.prototype.$bus = this
+       *    全局事件总线对象是所有的Vue实例和组件实例都可以直接访问的
+       *        this.$bus.on('') 去注册事件
+       *        this.$bus.$emit('') 去触发事件
+       *        this.$bus.$off('')  去销毁事件
+       */
+    </script>
+  </body>
+</html>
