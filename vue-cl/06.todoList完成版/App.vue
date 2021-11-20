@@ -82,6 +82,14 @@ export default {
     // 全选和全不选
     this.$bus.$on("allCheck", this.allCheck);
   },
+
+  beforeDestroy() {
+    // 一定要记得在组件销毁之前，解绑事件总线上的自定义事件
+    this.$bus.$off("todoName");
+    this.$bus.$off("del");
+    this.$bus.$off("isCheck");
+    this.$bus.$off("allCheck");
+  },
 };
 </script>
 
