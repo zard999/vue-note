@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03.路由导航</title>
+    <style>
+      .aa {
+        color: red;
+      }
+      .bb {
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p>
+        <router-link to="/home">Home</router-link>
+        <router-link to="/user">User</router-link>
+        <router-link to="/about">About</router-link>
+      </p>
+      <router-view></router-view>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+    <script src="./js/vue-router.js"></script>
+    <script>
+      // 注册路由插件
+      Vue.use(VueRouter);
+
+      const Home = {
+        template: `<div>
+                <h2>Home</h2>
+                </div>`,
+      };
+
+      const User = {
+        template: `<div>
+                <h2>User</h2>
+                </div>`,
+      };
+
+      const About = {
+        template: `<div>
+                <h2>About</h2>
+                </div>`,
+      };
+
+      const router = new VueRouter({
+        linkActiveClass: "aa",
+        linkExactActiveClass: "bb",
+        routes: [
+          {
+            path: "/",
+            redirect: "/home",
+          },
+          { path: "/home", component: Home },
+          { path: "/user", component: User },
+          { path: "/about", component: About },
+        ],
+      });
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "hello",
+        },
+        router,
+      });
+      /**
+       * VueRouter是基于Vue框架的插件
+       * 基本使用步骤
+       * 1. 安装VueRouter  yarn add vue-router
+       * 2. 引入路由插件    组件使用import  普通html页面使用script标签的方式
+       * 3. 注册路由插件
+       * 4. 创建路由实例对象
+       * 5. 书写路由规则
+       * 6. 和vm进行关联
+       * 7. 在页面中需要显示页面结构的位置使用router-view
+       */
+    </script>
+  </body>
+</html>
