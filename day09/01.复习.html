@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>01.复习</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * 1. Vuex
+       *     它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生改变  其实就相当于是一个集中进行数据管理的一个小仓库  数据中心
+       *     所有组件共用的数据放在store的state中
+       *     组件内仅自己使用的数据不要放在这个store中，放在自己组件中的data当中即可
+       *
+       *     mutations   只能在这里面对store中的数据进行操作     增删改查
+       *         mutations是一个对象，这个对象中的所有的函数第一个参数都是state
+       *             而且函数内不能有第三个参数，也就是顶多只有两个参数
+       *             如果有多个数据需要传进来的话，需要放在一个对象当中，以第二个参数的形式传进来
+       *     actions     在这里面进行异步操作
+       *         也是一个对象，里面也是一些和mutations中函数类似的函数
+       *         不过actions中的函数不直接操作store，一般用于处理异步操作
+       *         执行完了以后，再给mutations来操作
+       *             context.commit()
+       *         如果要是用了actions处理异步操作的话，组件中的普通事件处理程序中就应该先dispatch给actions然后进行后续处理
+       *
+       **/
+    </script>
+  </body>
+</html>
