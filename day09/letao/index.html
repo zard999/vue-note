@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>乐淘商城</title>
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="stylesheet" href="./lib/fa/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./lib/mui/css/mui.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="icon" href="favicon.ico" />
+  </head>
+  <body>
+    <div class="lt_container">
+      <div class="lt_header">
+        <router-link to="/index" class="icon_left">
+          <i class="fa fa-home"></i>
+        </router-link>
+        <h3>乐淘云购</h3>
+        <a href="search.html" class="icon_right"
+          ><i class="fa fa-search"></i
+        ></a>
+      </div>
+      <div class="lt_main">
+        <router-view></router-view>
+      </div>
+      <div class="lt_footer">
+        <ul>
+          <li>
+            <router-link to="/index">
+              <i class="fa fa-home"></i>
+              <p>首页</p>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/classify">
+              <i class="fa fa-bars"></i>
+              <p>分类页</p>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/cart">
+              <i class="fa fa-shopping-cart"></i>
+              <p>购物车</p>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/user">
+              <i class="fa fa-user"></i>
+              <p>用户中心</p>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
+    <script>
+      Vue.use(VueRouter);
+      const Index = {
+        template: `<div>
+          <h2>这是首页</h2>
+          </div>`,
+      };
+
+      const Classify = {
+        template: `<div>
+          <h2>这是分类页</h2>
+          </div>`,
+      };
+
+      const Cart = {
+        template: `<div>
+          <h2>这是购物车</h2>
+          </div>`,
+      };
+
+      const User = {
+        template: `<div>
+          <h2>这是用户页</h2>
+          </div>`,
+      };
+
+      const router = new VueRouter({
+        linkActiveClass: "current",
+        linkExactActiveClass: "current",
+        routes: [
+          {
+            path: "/",
+            redirect: "/index",
+          },
+          {
+            path: "/index",
+            component: Index,
+          },
+          {
+            path: "/classify",
+            component: Classify,
+          },
+          {
+            path: "/cart",
+            component: Cart,
+          },
+          {
+            path: "/user",
+            component: User,
+          },
+        ],
+      });
+      new Vue({
+        el: ".lt_container",
+        router,
+      });
+    </script>
+  </body>
+</html>
