@@ -1,61 +1,30 @@
 <template>
-  <div id="app">
-    <Header></Header>
-    <div class="container">
-      <AddMessage @add="add"></AddMessage>
-      <CommentBack :commentList="commentList" :delItem="delItem"></CommentBack>
+  <div>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8">
+        <div class="page-header"><h2>Vue Router Demo</h2></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2 col-xs-offset-2">
+        <div class="list-group">
+          <router-link to="/about" class="list-group-item">About</router-link>
+          <router-link to="/home" class="list-group-item">Home</router-link>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="panel">
+          <div class="panel-body">
+            <router-view></router-view>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Header from "./components/Header/Header.vue";
-import AddMessage from "./components/AddMessage/AddMessage.vue";
-import CommentBack from "./components/CommentBack/CommentBack.vue";
-import "./App.css";
-export default {
-  name: "App",
-  components: {
-    Header,
-    AddMessage,
-    CommentBack,
-  },
-  data() {
-    return {
-      commentList: [
-        {
-          id: 0,
-          user: "zyh",
-          content: "React真不错！",
-        },
-        {
-          id: 1,
-          user: "cqh",
-          content: "Redux！",
-        },
-        {
-          id: 2,
-          user: "wyf",
-          content: "Hooks真不错！",
-        },
-      ],
-    };
-  },
-
-  methods: {
-    delItem(id) {
-      this.commentList = this.commentList.filter((item) => item.id !== id);
-    },
-
-    add(username, commentConent) {
-      this.commentList.unshift({
-        id: Date.now(),
-        user: username,
-        conent: commentConent,
-      });
-    },
-  },
-};
+export default {};
 </script>
 
 <style>
