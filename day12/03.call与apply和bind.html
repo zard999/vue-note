@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>03.call与apply和bind</title>
+  </head>
+  <body>
+    <script>
+      function fn(a, b) {
+        "use strict";
+        // this.c = 10;
+        // console.log(arguments.callee);
+        console.log(this.c);
+      }
+      const obj = {
+        c: 20,
+      };
+      fn.call(obj, 1, 2);
+
+      function Person(c) {
+        this.c = c;
+      }
+
+      Person.bind(obj);
+
+      const person = new Person(10);
+      console.log(person);
+
+      /**
+       * call apply bind的使用
+       * 共同点：
+       *      1. 都可以改变this的指向
+       * 不同点：
+       *      1. call apply会让函数立即执行
+       *      2. bind不会让函数立即执行 会返回一个跟当前函数一模一样，只是this被改变的函数
+       */
+    </script>
+  </body>
+</html>
